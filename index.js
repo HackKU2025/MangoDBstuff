@@ -75,6 +75,16 @@ app.post('/signin', async (req, res) => {
   }
 });
 
+// Logout route
+app.post('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).send("❌ Error logging out");
+    }
+    res.send("✅ Logged out successfully!");
+  });
+});
+
 // Add to Watchlist
 app.post('/add-to-watchlist', async (req, res) => {
   const { title, rating, status } = req.body;  // The movie/show title, rating, and status
